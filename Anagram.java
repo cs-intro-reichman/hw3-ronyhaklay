@@ -3,10 +3,10 @@ import java.util.Random;
 
 public class Anagram {
     public static void main(String args[]) {
-        System.out.println(isAnagram("silent", "listen"));
-        System.out.println(isAnagram("William Shakespeare", "I am a weakish speller"));
-        System.out.println(isAnagram("Madam Curie", "Radium came"));
-        System.out.println(isAnagram("Tom Marvolo Riddle", "I am Lord Voldemort"));
+        System.out.println(isAnagram("silent", "listen"));  // true
+        System.out.println(isAnagram("William Shakespeare", "I am a weakish speller")); // true
+        System.out.println(isAnagram("Madam Curie", "Radium came")); // true
+        System.out.println(isAnagram("Tom Marvolo Riddle", "I am Lord Voldemort")); // true
 
         System.out.println(preProcess("What? No way!!!"));
 
@@ -40,9 +40,7 @@ public class Anagram {
     }
 
     public static String preProcess(String str) {
-        String lowerCase = str.toLowerCase();
-		String newString = lowerCase.replaceAll("[!?]", "");
-		return newString;
+        return str.toLowerCase().replaceAll("[^a-z ]", ""); // שמירת רווחים
     }
 
     public static String randomAnagram(String str) {
