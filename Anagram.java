@@ -24,24 +24,16 @@ public class Anagram {
     }
 
     public static boolean isAnagram(String str1, String str2) {
-        str1 = preProcess(str1);
-        str2 = preProcess(str2);
-
-        if (str1.length() != str2.length())
-            return false;
-
-        char[] charsS1 = str1.toCharArray();
-        Arrays.sort(charsS1);
-        char[] charsS2 = str2.toCharArray();
-        Arrays.sort(charsS2);
-
-        for (int i = 0; i < charsS1.length; i++) {
-            if (charsS1[i] != charsS2[i]) {
-                return false; 
-            }
-        }
-        return true; 
-    }
+    str1 = preProcess(str1);
+    str2 = preProcess(str2); 
+    if (str1.length() != str2.length())
+        return false;
+    char[] arr1 = str1.toCharArray();
+    char[] arr2 = str2.toCharArray();
+    Arrays.sort(arr1);
+    Arrays.sort(arr2);
+    return Arrays.equals(arr1, arr2);
+    }  
 
     public static String preProcess(String str) {
         return str.toLowerCase().replaceAll("[^a-z ]", ""); // שמירת רווחים
