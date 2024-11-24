@@ -28,29 +28,30 @@ public class LoanCalc {
     }
 	
     public static double bruteForceSolver(double loan, double rate, int n, double epsilon) {
-		double g = loan / n;
-		Double r = 1.0 + rate / 100.0;
 		iterationCounter = 0;
-		while(endBalance(loan, r, n, g) > epsilon) {
-				g = g + epsilon;
-				iterationCounter++;
-			}
-			return g;
+		double payment = loan / n;
+		while (endBalance(loan, rate, n, payment) > epsilon){
+			payment += epsilon;
+			iterationCounter++;
+		}
+		return payment;
 		}
 
     public static double bisectionSolver(double loan, double rate, int n, double epsilon) {  
 		iterationCounter = 0;
-		Double r = 1.0 + rate / 100.0;
-		double low = loan/n;
-		double high = loan;
-		double g = (low + high) / 2.0;
-		while(Math.abs(high - low) > epsilon) {
-			if((endBalance(loan, r, n, g)) * (endBalance(loan, r, n, low)) > 0){
-				low = g;
-			} else {
-				high = g;
+		double L = loan / n;
+		double H = loan;
+		double g = (H + L) / 2;
+
+		while ((H - L) > epsilon){
+			if (endBalance(loan, rate, n, g) > 0){
+				L = g;
+				g = (H + L) / 2;
 			}
-			g = (low + high) / 2.0;
+			else {
+				H = g;
+				g = (H + L) / 2;
+			}
 			iterationCounter++;
 		}
 		return g;
