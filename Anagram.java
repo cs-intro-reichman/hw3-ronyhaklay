@@ -25,8 +25,8 @@ public class Anagram {
 
     public static boolean isAnagram(String str1, String str2) {
         int counter = 0;
-		str1 = preProcess(str1);
-		str2 = preProcess(str2);
+		str1 = preProcessExtra(str1);
+		str2 = preProcessExtra(str2);
           for(int i = 0; i < str1.length(); i++){
             for(int j = 0; j < str1.length(); j++){
 				if(str1.charAt(i) == str2.charAt(j)){
@@ -43,6 +43,18 @@ public class Anagram {
 
     public static String preProcess(String str) {
         return str.toLowerCase().replaceAll("[^a-z ]", ""); // שמירת רווחים
+    }
+
+    public static String preProcessExtra(String str) {
+        String totalString = ""; 
+        str = str.toLowerCase(); 
+        for (int i = 0; i < str.length(); i++) {
+            char current = str.charAt(i); 
+            if (current >= 'a' && current <= 'z') { 
+                totalString += current; 
+            }
+        }
+        return totalString; 
     }
 
     public static String randomAnagram(String str) {
