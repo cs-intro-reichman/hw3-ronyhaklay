@@ -31,12 +31,16 @@ public class Anagram {
             return false;
 
         char[] charsS1 = str1.toCharArray();
-        char[] charsS2 = str2.toCharArray();
-
         Arrays.sort(charsS1);
+        char[] charsS2 = str2.toCharArray();
         Arrays.sort(charsS2);
 
-        return Arrays.equals(charsS1, charsS2);
+        for (int i = 0; i < charsS1.length; i++) {
+            if (charsS1[i] != charsS2[i]) {
+                return false; 
+            }
+        }
+        return true; 
     }
 
     public static String preProcess(String str) {
